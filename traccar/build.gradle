@@ -1,7 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
-group = 'com.github.ryantan276'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.github.ryantan276'
+            artifactId = 'traccar-client-android'
+            version = '1.0.1'
+            from components.java
+        }
+    }
+}
 
 android {
     compileSdkVersion 33
