@@ -1,13 +1,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 group = 'com.github.ryantan276'
 
 android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId 'org.traccar.client'
         buildConfigField 'boolean', 'HIDDEN_APP', 'false'
         minSdkVersion 16
         targetSdkVersion 33
@@ -30,7 +29,6 @@ android {
         }
         google
         hidden {
-            applicationId 'org.traccar.client.hidden'
             buildConfigField 'boolean', 'HIDDEN_APP', 'true'
         }
     }
@@ -80,3 +78,4 @@ if (getGradle().getStartParameter().getTaskRequests().toString().contains('Googl
         preBuild.dependsOn copyJson
     }
 }
+
