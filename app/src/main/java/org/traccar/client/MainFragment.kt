@@ -101,7 +101,7 @@ class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListene
             PendingIntent.FLAG_UPDATE_CURRENT
         }
         alarmIntent = PendingIntent.getBroadcast(activity, 0, originalIntent, flags)
-
+        findPreference<Preference>(KEY_URL)?.isEnabled = false
         if (sharedPreferences.getBoolean(KEY_STATUS, false)) {
             startTrackingService(checkPermission = true, initialPermission = false)
         }
@@ -175,7 +175,6 @@ class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListene
 
     private fun setPreferencesEnabled(enabled: Boolean) {
         findPreference<Preference>(KEY_DEVICE)?.isEnabled = enabled
-        findPreference<Preference>(KEY_URL)?.isEnabled = enabled
         findPreference<Preference>(KEY_INTERVAL)?.isEnabled = enabled
         findPreference<Preference>(KEY_DISTANCE)?.isEnabled = enabled
         findPreference<Preference>(KEY_ANGLE)?.isEnabled = enabled
