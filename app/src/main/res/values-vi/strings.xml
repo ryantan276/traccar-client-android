@@ -27,4 +27,8 @@
   <string name="hidden_app_name">Cài đặt thiết bị</string>
   <string name="hidden_alert">Ứng dụng đã được ẩn. Để mở lại xin vui lòng gọi 8722227 (TRACCAR).</string>
   <string name="error_msg_invalid_url">Vui lòng nhập đường dẫn hợp lệ http:// hoặc https://</string>
+  <string name="request_exception">Để luôn thu thập được dữ liệu vị trí vui lòng chọn \"Không tối ưu hoá\" cho  Pin cho ứng dụng này.</string>
+  <string name="request_background">Để luôn thu thập được dữ liệu vị trí vui lòng chọn \"%s\" cho quyền này.</string>
+  <string name="permission_background_location_request_message">"Xin chào! Để cung cấp dữ liệu vị trí chính xác hơn cho bạn và bộ phận điều hành, chúng tôi cần truy cập vị trí của bạn ngay cả khi ứng dụng chạy trong chế độ nền và cả khi ứng dụng bị đóng. Vui lòng chọn \'Luôn cho phép'\ chúng tôi truy cập vị trí của bạn trong màn hình tiếp theo. Cảm ơn bạn đã tin tưởng chúng tôi!"</string>
+  <string name="understood">Đã hiểu</string>
 </resources>

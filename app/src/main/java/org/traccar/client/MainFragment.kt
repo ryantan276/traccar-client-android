@@ -49,7 +49,7 @@ import dev.doubledot.doki.ui.DokiActivity
 import java.util.*
 import kotlin.collections.HashSet
 
-class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
+open class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var alarmManager: AlarmManager
@@ -235,7 +235,7 @@ class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListene
         builder.show()
     }
 
-    private fun startTrackingService(checkPermission: Boolean, initialPermission: Boolean) {
+    fun startTrackingService(checkPermission: Boolean, initialPermission: Boolean) {
         var permission = initialPermission
         if (checkPermission) {
             val requiredPermissions: MutableSet<String> = HashSet()
@@ -322,8 +322,8 @@ class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListene
         const val KEY_STATUS = "status"
         const val KEY_BUFFER = "buffer"
         const val KEY_WAKELOCK = "wakelock"
-        private const val PERMISSIONS_REQUEST_LOCATION = 2
-        private const val PERMISSIONS_REQUEST_BACKGROUND_LOCATION = 3
+        const val PERMISSIONS_REQUEST_LOCATION = 2
+        const val PERMISSIONS_REQUEST_BACKGROUND_LOCATION = 3
     }
 
 }
