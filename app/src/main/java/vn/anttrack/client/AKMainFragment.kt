@@ -21,14 +21,14 @@ class AKMainFragment : MainFragment() {
 
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            DialogUtil.showAlertWith1Button(
-                activity,
+            DialogUtil.showAlertWith2Buttons(requireActivity(),
                 "",
                 getString(R.string.permission_background_location_request_message),
-                getString(R.string.understood)
-            ) { dialog, _ ->
-                dialog.dismiss()
-            }
+                getString(android.R.string.ok),
+                getString(android.R.string.cancel),
+                { dialog, _ -> dialog.dismiss() }
+            ) { _, _ -> requireActivity().finish() }
+
         }
 
     }

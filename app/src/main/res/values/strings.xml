@@ -52,6 +52,6 @@
   <string name="request_background_option">Allow all the time</string>
   <string name="widget_description">Shows the service status</string>
   <string name="widget_label">Status widget</string>
-  <string name="permission_background_location_request_message" >Hi there! To provide the operator the best tracking data possible, we need to access your location even when the app is running in background mode and when the app is closed. Don\'t worry, we take your privacy seriously and will only use this information to enhance your experience with our app. Please grant us access to your location by tapping \'Allow all the time\' on the next screen. Thank you for trusting us with your information!</string>
+  <string name="permission_background_location_request_message" >Hi there! To provide you the best location tracking data possible, we need to access your phone location even when the app is running in background mode and when the app is closed. Don\'t worry, we take your privacy seriously and will only use this information to enhance your experience with our app. Please grant us access to your location by tapping \'Allow all the time\' on the next screen. Thank you for trusting us with your information!</string>
   <string name="understood">Understood</string>
 </resources>
