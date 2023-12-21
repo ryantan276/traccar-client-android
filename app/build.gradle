@@ -11,9 +11,9 @@ android {
         applicationId 'vn.anttrack.client'
         buildConfigField 'boolean', 'HIDDEN_APP', 'false'
         minSdkVersion 16
-        targetSdkVersion 33
-        versionCode 231102
-        versionName '1.0.1'
+        targetSdkVersion 34
+        versionCode 231221
+        versionName '1.0.2'
         multiDexEnabled true
     }
     namespace 'org.traccar.client'
@@ -33,11 +33,6 @@ android {
             ext.enableCrashlytics = false
         }
         google
-
-        hidden {
-            applicationId 'vn.anttrack.client.hidden'
-            buildConfigField 'boolean', 'HIDDEN_APP', 'true'
-        }
 
     }
 
