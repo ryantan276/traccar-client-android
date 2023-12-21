@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 - 2022 Anton Tananaev (anton@traccar.org)
+ * Copyright 2012 - 2023 Anton Tananaev (anton@traccar.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,10 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.content.SharedPreferences.*
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -47,7 +46,6 @@ import androidx.preference.PreferenceManager
 import androidx.preference.TwoStatePreference
 import dev.doubledot.doki.ui.DokiActivity
 import java.util.*
-import kotlin.collections.HashSet
 
 open class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
 
@@ -58,9 +56,6 @@ open class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLi
 
     @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        if (BuildConfig.HIDDEN_APP && Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            removeLauncherIcon()
-        }
         setHasOptionsMenu(true)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         setPreferencesFromResource(R.xml.preferences, rootKey)
@@ -138,24 +133,6 @@ open class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLi
         }
     }
 
-    private fun removeLauncherIcon() {
-        val className = MainActivity::class.java.canonicalName!!.replace(".MainActivity", ".Launcher")
-        val componentName = ComponentName(requireActivity().packageName, className)
-        val packageManager = requireActivity().packageManager
-        if (packageManager.getComponentEnabledSetting(componentName) != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
-            packageManager.setComponentEnabledSetting(
-                componentName,
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                PackageManager.DONT_KILL_APP
-            )
-            val builder = AlertDialog.Builder(requireActivity())
-            builder.setIcon(android.R.drawable.ic_dialog_alert)
-            builder.setMessage(getString(R.string.hidden_alert))
-            builder.setPositiveButton(android.R.string.ok, null)
-            builder.show()
-        }
-    }
-
     override fun onStart() {
         super.onStart()
         if (requestingPermissions) {
@@ -183,16 +160,16 @@ open class MainFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLi
         findPreference<Preference>(KEY_WAKELOCK)?.isEnabled = enabled
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == KEY_STATUS) {
-            if (sharedPreferences.getBoolean(KEY_STATUS, false)) {
+            if (sharedPreferences?.getBoolean(KEY_STATUS, false) == true) {
                 startTrackingService(checkPermission = true, initialPermission = false)
             } else {
                 stopTrackingService()
             }
             (requireActivity().application as MainApplication).handleRatingFlow(requireActivity())
         } else if (key == KEY_DEVICE) {
-            findPreference<Preference>(KEY_DEVICE)?.summary = sharedPreferences.getString(KEY_DEVICE, null)
+            findPreference<Preference>(KEY_DEVICE)?.summary = sharedPreferences?.getString(KEY_DEVICE, null)
         }
     }
 
